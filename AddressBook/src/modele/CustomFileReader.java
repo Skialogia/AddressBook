@@ -14,11 +14,21 @@ public class CustomFileReader
 {
 	private String _filename;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param filename The filename to be read
+	 */
 	public CustomFileReader(String filename) {
 		super();
 		this._filename = filename;
 	}
 	
+	/**
+	 * Reads the content of the file and creates a list of users
+	 * 
+	 * @return List of users read from the file, or null if an error occurs
+	 */
 	public List<User> read()
 	{
 		File file = new File(_filename);

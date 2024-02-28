@@ -80,6 +80,15 @@ public class User
 	public void set_birthDate(Date birthDate) {
 		this._birthDate = birthDate;
 	}
-	
+
+	/**
+	 * Returns a string representation of the user
+	 * 
+	 * @return Returns a string representation of the user, including his name, gender and birth date
+	 */
+	@Override
+	public String toString() {
+		return "User [name=" + _name + ", gender=" + _gender + ", birthDate=" + _birthDate + "]";
+	}
 	
 }
