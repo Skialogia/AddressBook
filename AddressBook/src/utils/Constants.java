@@ -27,4 +27,6 @@ public class Constants
 	public static final String ERROR_CANNOT_READ_FILE = "Error: Cannot read file\n";
 	public static final String ERROR_WRONG_DATA_FORMAT = "Error: Wrong data format\n";
 	public static final String ERROR_UNKNOWN_PERSON = "Error: Unknown person\n";
+	public static final String ERROR_EMPTY_FILEPATH = "Error: Empty file path\n";
+	public static final String ERROR_WRONG_DATE_FORMAT = "Error: Wrong date format\n";
 }

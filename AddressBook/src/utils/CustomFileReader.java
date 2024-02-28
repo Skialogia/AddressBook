@@ -7,6 +7,7 @@ import modele.User;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -37,11 +38,20 @@ public class CustomFileReader
 	 */
 	public List<User> read()
 	{
+		if (_filename == null || _filename == "")
+		{
+			System.out.print(Constants.ERROR_EMPTY_FILEPATH);
+			return null;
+		}
+		
 		File file = new File(_filename);
-		List<User> users = new ArrayList<User>();
 		
 		if (checkFile(file))
+		{
 			return null;
+		}
+
+		List<User> users = new ArrayList<User>();
 		
 		try(BufferedReader br = new BufferedReader(new FileReader(file)))
 		{
@@ -50,6 +60,10 @@ public class CustomFileReader
 			while (line != null)
 			{
 				User user = createUserFromLine(line);
+				
+				if (user == null)
+					return null;
+				
 				users.add(user);
 				line = br.readLine();
 			}
@@ -57,14 +71,20 @@ public class CustomFileReader
 			br.close();
 		} catch (IOException e)
 		{
-			e.printStackTrace();
+			// In the case the file is unreadable, a FileNotFoundException will be thrown
+			if (e instanceof FileNotFoundException)
+				System.out.print(Constants.ERROR_CANNOT_READ_FILE);
+			else
+				e.printStackTrace();
 			return null;
 		}
+		if (users.size() == 0)
+			return null;
 		return users;
 	}
 	
 	/**
-	 * Checks if the file exists, is a normal file and readable
+	 * Checks if the file exists and if it is a normal file
 	 * 
 	 * @param file File
 	 * 
@@ -81,12 +101,6 @@ public class CustomFileReader
 		if (!file.isFile())
 		{
 			System.out.print(Constants.ERROR_IS_NOT_A_FILE);
-			return true;
-		}
-		
-		if (!file.canRead())
-		{
-			System.out.print(Constants.ERROR_CANNOT_READ_FILE);
 			return true;
 		}
 		
@@ -122,7 +136,7 @@ public class CustomFileReader
 			date = date.withYear(date.getYear() - 100);
 		} catch (DateTimeParseException e)
 		{
-			e.printStackTrace();
+			System.out.print(Constants.ERROR_WRONG_DATE_FORMAT);
 			return null;
 		}
 		
