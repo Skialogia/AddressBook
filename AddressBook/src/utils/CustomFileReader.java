@@ -1,14 +1,17 @@
-package modele;
+package utils;
 
 import java.util.List;
+
+import modele.User;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class CustomFileReader
 {
@@ -57,7 +60,7 @@ public class CustomFileReader
 			
 			String line = br.readLine();
 			String[] parts;
-			SimpleDateFormat simpleformat = new SimpleDateFormat("dd/MM/yy");
+			DateTimeFormatter simpleformat = DateTimeFormatter.ofPattern("dd/MM/yy");
 			while (line != null)
 			{
 				parts = line.split(", ");
@@ -66,11 +69,11 @@ public class CustomFileReader
 					System.out.print("");
 					return null;
 				}
-				Date date = null;
+				LocalDate date = null;
 				try
 				{
-					date = simpleformat.parse(parts[2]);
-				} catch (ParseException e)
+					date = LocalDate.parse(parts[2], simpleformat);
+				} catch (DateTimeParseException e)
 				{
 					e.printStackTrace();
 					return null;

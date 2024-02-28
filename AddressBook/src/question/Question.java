@@ -1,9 +1,11 @@
 package question;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import modele.User;
+import modele.UserManager;
 
 public class Question
 {
@@ -33,19 +35,27 @@ public class Question
 	 */
 	public static void getOldestPersonInList(List<User> users)
 	{
-		User oldest = users.get(0);
-		Date oldBirthDate = oldest.getBirthDate();
+		User oldestUser = users.get(0);
+		LocalDate oldestBirthDate = oldestUser.getBirthDate();
 		
 		for (User u : users)
 		{
-			if (u.getBirthDate().before(oldBirthDate))
+			if (u.getBirthDate().isBefore(oldestBirthDate))
 			{
-				oldest = u;
-				oldBirthDate = oldest.getBirthDate();
+				oldestUser = u;
+				oldestBirthDate = oldestUser.getBirthDate();
 			}
 		}
 		
-		System.out.print(oldest);
+		System.out.print(oldestUser);
 	}
-
+	
+	public static void getNumberofDaysBetweenTwoPeoples(UserManager userManager, String name1, String name2)
+	{
+		User user1 = userManager.getUserByName(name1);
+		User user2 = userManager.getUserByName(name2);
+		
+		long days = ChronoUnit.DAYS.between(user1.getBirthDate(), user2.getBirthDate());
+		System.out.print(days);
+	}
 }

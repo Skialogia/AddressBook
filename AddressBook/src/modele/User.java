@@ -1,6 +1,6 @@
 package modele;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 
 /**
@@ -11,7 +11,7 @@ public class User
 {
 	private String _name;
 	private String _gender;
-	private Date _birthDate;
+	private LocalDate _birthDate;
 	
 	/**
 	 * Constructor
@@ -20,7 +20,7 @@ public class User
 	 * @param gender Gender of user
 	 * @param birthDate Birth date of user
 	 */
-	public User(String name, String gender, Date birthDate) {
+	public User(String name, String gender, LocalDate birthDate) {
 		super();
 		this._name = name;
 		this._gender = gender;
@@ -68,7 +68,7 @@ public class User
 	 * 
 	 * @return Birth date of the user
 	 */
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return _birthDate;
 	}
 
@@ -77,7 +77,7 @@ public class User
 	 * 
 	 * @param Birth date of the user
 	 */
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this._birthDate = birthDate;
 	}
 
