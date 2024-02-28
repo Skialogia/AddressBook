@@ -2,6 +2,8 @@ package modele;
 
 import java.time.LocalDate;
 
+import utils.Gender;
+
 
 /**
  * Based on the file text, we can define an user by a name, a gender and a birth date.
@@ -10,7 +12,7 @@ import java.time.LocalDate;
 public class User 
 {
 	private String _name;
-	private String _gender;
+	private Gender _gender;
 	private LocalDate _birthDate;
 	
 	/**
@@ -20,7 +22,7 @@ public class User
 	 * @param gender Gender of user
 	 * @param birthDate Birth date of user
 	 */
-	public User(String name, String gender, LocalDate birthDate) {
+	public User(String name, Gender gender, LocalDate birthDate) {
 		super();
 		this._name = name;
 		this._gender = gender;
@@ -51,7 +53,7 @@ public class User
 	 * @return Gender of the user
 	 */
 	public String getGender() {
-		return _gender;
+		return _gender.getName();
 	}
 
 	/**
@@ -59,7 +61,7 @@ public class User
 	 * 
 	 * @param Gender of the user
 	 */
-	public void setGender(String gender) {
+	public void setGender(Gender gender) {
 		this._gender = gender;
 	}
 
@@ -88,7 +90,7 @@ public class User
 	 */
 	@Override
 	public String toString() {
-		return "User [name=" + _name + ", gender=" + _gender + ", birthDate=" + _birthDate + "]";
+		return "User [name=" + _name + ", gender=" + _gender.getName() + ", birthDate=" + _birthDate + "]";
 	}
 	
 }

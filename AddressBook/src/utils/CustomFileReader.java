@@ -39,19 +39,19 @@ public class CustomFileReader
 		
 		if (!file.exists())
 		{
-			System.out.print("");
+			System.out.print(Constants.ERROR_FILE_DOES_NOT_EXIST);
 			return null;
 		}
 		
 		if (!file.isFile())
 		{
-			System.out.print("");
+			System.out.print(Constants.ERROR_IS_NOT_A_FILE);
 			return null;
 		}
 		
 		if (!file.canRead())
 		{
-			System.out.print("");
+			System.out.print(Constants.ERROR_CANNOT_READ_FILE);
 			return null;
 		}
 		
@@ -66,7 +66,7 @@ public class CustomFileReader
 				parts = line.split(", ");
 				if (parts.length != 3)
 				{
-					System.out.print("");
+					System.out.print(Constants.ERROR_WRONG_DATA_FORMAT);
 					return null;
 				}
 				LocalDate date = null;
@@ -78,7 +78,7 @@ public class CustomFileReader
 					e.printStackTrace();
 					return null;
 				}
-				User user = new User(parts[0], parts[1], date);
+				User user = new User(parts[0], Gender.getGenderFromString(parts[1]), date);
 				users.add(user);
 				line = br.readLine();
 			}
