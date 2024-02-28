@@ -32,7 +32,7 @@ public class User
 	 * 
 	 * @return Name of the user
 	 */
-	public String get_name() {
+	public String getName() {
 		return _name;
 	}
 
@@ -41,7 +41,7 @@ public class User
 	 * 
 	 * @param New name of the user
 	 */
-	public void set_user(String name) {
+	public void setUser(String name) {
 		this._name = name;
 	}
 
@@ -50,7 +50,7 @@ public class User
 	 * 
 	 * @return Gender of the user
 	 */
-	public String get_gender() {
+	public String getGender() {
 		return _gender;
 	}
 
@@ -59,7 +59,7 @@ public class User
 	 * 
 	 * @param Gender of the user
 	 */
-	public void set_gender(String gender) {
+	public void setGender(String gender) {
 		this._gender = gender;
 	}
 
@@ -68,7 +68,7 @@ public class User
 	 * 
 	 * @return Birth date of the user
 	 */
-	public Date get_birthDate() {
+	public Date getBirthDate() {
 		return _birthDate;
 	}
 
@@ -77,7 +77,7 @@ public class User
 	 * 
 	 * @param Birth date of the user
 	 */
-	public void set_birthDate(Date birthDate) {
+	public void setBirthDate(Date birthDate) {
 		this._birthDate = birthDate;
 	}
 

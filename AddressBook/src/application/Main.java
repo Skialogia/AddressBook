@@ -4,6 +4,7 @@ import java.util.List;
 
 import modele.CustomFileReader;
 import modele.User;
+import question.Question;
 
 public class Main {
 
@@ -16,6 +17,10 @@ public class Main {
 		{
 			System.out.print(u + "\n");
 		}
+		
+		Question.countMenInList(users);
+		System.out.print("\n");
+		Question.getOldestPersonInList(users);
 	}
 
 }
