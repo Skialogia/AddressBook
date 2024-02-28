@@ -13,7 +13,7 @@ class UserTest {
 
 	@Test
 	void testToString() {
-		User user = new User("John Doe", Gender.MALE, LocalDate.of(1900, 1, 1));
+		User user = new User("John Doe", Gender.getGenderFromString("Male"), LocalDate.of(1900, 1, 1));
 		String test = "User [name=John Doe, gender=Male, birthDate=" + LocalDate.of(1900, 1, 1) + "]";
 		assertEquals(test, user.toString());
 	}
@@ -21,14 +21,14 @@ class UserTest {
 	@Test
 	void testSetterGetter()
 	{
-		User user = new User("John Doe", Gender.MALE, LocalDate.of(1900, 1, 1));
+		User user = new User("John Doe", Gender.getGenderFromString("Unknown"), LocalDate.of(1900, 1, 1));
 		
 		assertEquals("John Doe", user.getName());
-		assertEquals("Male", user.getGender());
+		assertEquals("Other", user.getGender());
 		assertEquals(LocalDate.of(1900, 1, 1), user.getBirthDate());
 		
 		user.setUser("Jeanne Doe");
-		user.setGender(Gender.FEMALE);
+		user.setGender(Gender.getGenderFromString("Female"));
 		user.setBirthDate(LocalDate.of(1989, 12, 15));
 		
 		assertEquals("Jeanne Doe", user.getName());

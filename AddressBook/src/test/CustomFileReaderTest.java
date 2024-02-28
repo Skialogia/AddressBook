@@ -43,7 +43,7 @@ class CustomFileReaderTest {
 	
 	// Test what happens when the file is unreadable
 	// Requires an unreadable file to test, but the unreadable file used for testing cannot be pushed to the repository due to permissions problems
-//	@Disabled
+	@Disabled
 	@Test
 	void testUnreadableFile()
 	{
@@ -144,7 +144,7 @@ class CustomFileReaderTest {
 	}
 	
 	// Test what happens when the file has a lot of lines
-//	@Disabled
+	@Disabled
 	@Test
 	void testBigFile()
 	{

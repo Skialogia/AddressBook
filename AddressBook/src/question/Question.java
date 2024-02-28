@@ -2,6 +2,7 @@ package question;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 import modele.User;
@@ -27,8 +28,6 @@ public class Question
 	 */
 	public static void countMenInList(List<User> users)
 	{
-		System.out.print(Constants.STR_HOW_MANY_MEN_IN_LIST);
-		
 		int nbMen = 0;
 		
 		for(User u : users)
@@ -47,9 +46,16 @@ public class Question
 	 */
 	public static void getOldestPersonInList(List<User> users)
 	{
-		System.out.print(Constants.STR_OLDEST_PERSON_IN_LIST);
+		if (users.size() == 0)
+		{
+			System.out.print("Empty List\n");
+			return;
+		}
+		
 		User oldestUser = users.get(0);
-		LocalDate oldestBirthDate = oldestUser.getBirthDate();
+		LocalDate oldestBirthDate = LocalDate.now();
+		
+		List<User> oldestUsers = new ArrayList<User>();
 		
 		for (User u : users)
 		{
@@ -57,10 +63,29 @@ public class Question
 			{
 				oldestUser = u;
 				oldestBirthDate = oldestUser.getBirthDate();
+				if (oldestUsers.size() != 0)
+					oldestUsers.clear();
+			}
+			else if (u.getBirthDate().isEqual(oldestBirthDate))
+			{
+				oldestUsers.add(oldestUser);
+				oldestUsers.add(u);
 			}
 		}
+		if (oldestUsers.size() == 0)
+			System.out.print(Constants.STR_ANSWER_SECOND_QUESTION + oldestUser.getName() + "\n");
+		else
+		{
+			String prompt = Constants.STR_ANSWER_SECOND_QUESTION;
+			
+			for (User u : oldestUsers)
+			{
+				prompt += u.getName() + " ";
+			}
+			prompt += "\n";
+			System.out.print(prompt);
+		}
 		
-		System.out.print(Constants.STR_ANSWER_SECOND_QUESTION + oldestUser.getName() + "\n");
 	}
 	
 	/**
@@ -72,8 +97,7 @@ public class Question
 	 */
 	public static void getNumberofDaysBetweenTwoPeoples(UserManager userManager, String name1, String name2)
 	{
-		System.out.print(Constants.STR_DAYS_BETWEEN_BILL_AND_PAUL);
-		
+				
 		User user1 = userManager.getUserByName(name1);
 		User user2 = userManager.getUserByName(name2);
 		
