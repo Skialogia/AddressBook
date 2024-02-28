@@ -1,7 +1,11 @@
 package utils;
 
+/**
+ * This class contains predefined constant values used throughout the application
+ */
 public class Constants
 {
+	// Private constructor to prevent instantiation of the class
 	private Constants()
 	{
 		

@@ -1,5 +1,6 @@
 package application;
 
+import modele.User;
 import modele.UserManager;
 import question.Question;
 

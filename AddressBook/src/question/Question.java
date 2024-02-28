@@ -9,9 +9,12 @@ import modele.UserManager;
 import utils.Constants;
 import utils.Gender;
 
+/**
+ * This class contains static methods to perform tasks requested in the instructions PDF file
+ */
 public class Question
 {
-
+	// Private constructor to prevent instantiation of the class
 	private Question()
 	{
 		

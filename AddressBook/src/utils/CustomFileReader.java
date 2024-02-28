@@ -13,6 +13,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * This class is used to read data from a file and creates a list of users 
+ */
 public class CustomFileReader
 {
 	private String _filename;
@@ -37,48 +40,16 @@ public class CustomFileReader
 		File file = new File(_filename);
 		List<User> users = new ArrayList<User>();
 		
-		if (!file.exists())
-		{
-			System.out.print(Constants.ERROR_FILE_DOES_NOT_EXIST);
+		if (checkFile(file))
 			return null;
-		}
-		
-		if (!file.isFile())
-		{
-			System.out.print(Constants.ERROR_IS_NOT_A_FILE);
-			return null;
-		}
-		
-		if (!file.canRead())
-		{
-			System.out.print(Constants.ERROR_CANNOT_READ_FILE);
-			return null;
-		}
 		
 		try(BufferedReader br = new BufferedReader(new FileReader(file)))
 		{
 			
 			String line = br.readLine();
-			String[] parts;
-			DateTimeFormatter simpleformat = DateTimeFormatter.ofPattern("dd/MM/yy");
 			while (line != null)
 			{
-				parts = line.split(", ");
-				if (parts.length != 3)
-				{
-					System.out.print(Constants.ERROR_WRONG_DATA_FORMAT);
-					return null;
-				}
-				LocalDate date = null;
-				try
-				{
-					date = LocalDate.parse(parts[2], simpleformat);
-				} catch (DateTimeParseException e)
-				{
-					e.printStackTrace();
-					return null;
-				}
-				User user = new User(parts[0], Gender.getGenderFromString(parts[1]), date);
+				User user = createUserFromLine(line);
 				users.add(user);
 				line = br.readLine();
 			}
@@ -90,5 +61,71 @@ public class CustomFileReader
 			return null;
 		}
 		return users;
+	}
+	
+	/**
+	 * Checks if the file exists, is a normal file and readable
+	 * 
+	 * @param file File
+	 * 
+	 * @return True if any of the checks fail, false otherwise
+	 */
+	private boolean checkFile(File file)
+	{
+		if (!file.exists())
+		{
+			System.out.print(Constants.ERROR_FILE_DOES_NOT_EXIST);
+			return true;
+		}
+		
+		if (!file.isFile())
+		{
+			System.out.print(Constants.ERROR_IS_NOT_A_FILE);
+			return true;
+		}
+		
+		if (!file.canRead())
+		{
+			System.out.print(Constants.ERROR_CANNOT_READ_FILE);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Creates a user from a line read from the file
+	 * 
+	 * @param line Line read from the file
+	 * 
+	 * @return New User, or null if error occurs
+	 */
+	private User createUserFromLine(String line)
+	{
+		String[] parts;
+		DateTimeFormatter simpleformat = DateTimeFormatter.ofPattern("dd/MM/yy");
+		LocalDate date = null;
+		
+		parts = line.split(", ");
+		if (parts.length != 3)
+		{
+			System.out.print(Constants.ERROR_WRONG_DATA_FORMAT);
+			return null;
+		}
+		
+		try
+		{
+			date = LocalDate.parse(parts[2], simpleformat);
+			
+			// LocalDate, with this format, starts from 2000
+			// So, I substract 100 years to make the provided years more realistic
+			date = date.withYear(date.getYear() - 100);
+		} catch (DateTimeParseException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		
+		return new User(parts[0], Gender.getGenderFromString(parts[1]), date);
 	}
 }
