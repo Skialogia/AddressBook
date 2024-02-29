@@ -51,11 +51,20 @@ public class UserManager
 	}
 	
 	/**
-	 * Returns list of users
+	 * Returns the list of users
 	 * 
 	 * @return List of users
 	 */
 	public List<User> getUsers() {
 		return _users;
+	}
+
+	/**
+	 * Sets the list of users
+	 * 
+	 * @param New list of users
+	 */
+	public void setUsers(List<User> users) {
+		this._users = users;
 	}
 }

@@ -68,7 +68,8 @@ public class Question
 			}
 			else if (u.getBirthDate().isEqual(oldestBirthDate))
 			{
-				oldestUsers.add(oldestUser);
+				if (oldestUsers.size() == 0)
+					oldestUsers.add(oldestUser);
 				oldestUsers.add(u);
 			}
 		}
@@ -108,6 +109,10 @@ public class Question
 		}
 		
 		long days = ChronoUnit.DAYS.between(user1.getBirthDate(), user2.getBirthDate());
+		
+		if (days < 0)
+			days = -days;
+		
 		System.out.print(Constants.STR_ANSWER_THIRD_QUESTION + days + "\n");
 	}
 }
