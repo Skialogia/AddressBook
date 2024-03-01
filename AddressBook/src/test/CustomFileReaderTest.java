@@ -145,13 +145,10 @@ class CustomFileReaderTest {
 	}
 
 	// Test what happens when the file has a lot of lines
-	@Disabled
+//	@Disabled
 	@Test
 	void testBigFile()
 	{
-
-		System.out.print("Big file size \n");
-
 		File file = null;
 		try
 		{

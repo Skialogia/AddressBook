@@ -11,7 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import modele.User;
-import modele.UserManager;
+import modele.AddressBook;
 import question.Question;
 import utils.Constants;
 import utils.Gender;
@@ -176,19 +176,19 @@ class QuestionTest {
 	@Test
 	void testGetNumberofDaysBetweenTwoPeoples()
 	{
-		UserManager manager = new UserManager();
+		AddressBook addressBook = new AddressBook();
 
 		List<User> users = new ArrayList<>();
 
 		users.add(new User("Name 0", Gender.MALE, LocalDate.of(1900, 1, 1)));
 		users.add(new User("Name 1", Gender.MALE, LocalDate.of(1901, 1, 1)));
 
-		manager.setUsers(users);
+		addressBook.setUsers(users);
 
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-		Question.getNumberofDaysBetweenTwoPeoples(manager, users.get(0).getName(), users.get(1).getName());
+		Question.getNumberofDaysBetweenTwoPeoples(addressBook, users.get(0).getName(), users.get(1).getName());
 
 		String output = outputStream.toString();
 
@@ -202,19 +202,19 @@ class QuestionTest {
 	@Test
 	void testGetNumberofDaysBetweenTwoPeoplesSameBirthDate()
 	{
-		UserManager manager = new UserManager();
+		AddressBook addressBook = new AddressBook();
 
 		List<User> users = new ArrayList<>();
 
 		users.add(new User("Name 0", Gender.MALE, LocalDate.of(1900, 1, 1)));
 		users.add(new User("Name 1", Gender.MALE, LocalDate.of(1900, 1, 1)));
 
-		manager.setUsers(users);
+		addressBook.setUsers(users);
 
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-		Question.getNumberofDaysBetweenTwoPeoples(manager, users.get(0).getName(), users.get(1).getName());
+		Question.getNumberofDaysBetweenTwoPeoples(addressBook, users.get(0).getName(), users.get(1).getName());
 
 		String output = outputStream.toString();
 
@@ -228,19 +228,19 @@ class QuestionTest {
 	@Test
 	void testGetNumberofDaysBetweenTwoPeoplesFirstOlder()
 	{
-		UserManager manager = new UserManager();
+		AddressBook addressBook = new AddressBook();
 
 		List<User> users = new ArrayList<>();
 
 		users.add(new User("Name 0", Gender.MALE, LocalDate.of(1901, 1, 1)));
 		users.add(new User("Name 1", Gender.MALE, LocalDate.of(1900, 1, 1)));
 
-		manager.setUsers(users);
+		addressBook.setUsers(users);
 
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-		Question.getNumberofDaysBetweenTwoPeoples(manager, users.get(0).getName(), users.get(1).getName());
+		Question.getNumberofDaysBetweenTwoPeoples(addressBook, users.get(0).getName(), users.get(1).getName());
 
 		String output = outputStream.toString();
 
@@ -255,18 +255,18 @@ class QuestionTest {
 	@Test
 	void testGetNumberofDaysButNullPeople()
 	{
-		UserManager manager = new UserManager();
+		AddressBook addressBook = new AddressBook();
 
 		List<User> users = new ArrayList<>();
 
 		users.add(new User("Name 0", Gender.MALE, LocalDate.of(1901, 1, 1)));
 
-		manager.setUsers(users);
+		addressBook.setUsers(users);
 
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-		Question.getNumberofDaysBetweenTwoPeoples(manager, users.get(0).getName(), null);
+		Question.getNumberofDaysBetweenTwoPeoples(addressBook, users.get(0).getName(), null);
 
 		String output = outputStream.toString();
 
@@ -274,7 +274,7 @@ class QuestionTest {
 
 		outputStream.reset();
 
-		Question.getNumberofDaysBetweenTwoPeoples(manager, null, users.get(0).getName());
+		Question.getNumberofDaysBetweenTwoPeoples(addressBook, null, users.get(0).getName());
 
 		output = outputStream.toString();
 
@@ -282,7 +282,7 @@ class QuestionTest {
 
 		outputStream.reset();
 
-		Question.getNumberofDaysBetweenTwoPeoples(manager, null, null);
+		Question.getNumberofDaysBetweenTwoPeoples(addressBook, null, null);
 
 		assertEquals(Constants.ERROR_UNKNOWN_PERSON, output);
 

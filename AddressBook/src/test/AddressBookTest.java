@@ -7,31 +7,31 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import modele.User;
-import modele.UserManager;
+import modele.AddressBook;
 
-class UserManagerTest {
+class AddressBookTest {
 
 	@Test
-	void testUserManager() {
-		UserManager manager = new UserManager();
+	void testAddressBook() {
+		AddressBook addressBook = new AddressBook();
 		
-		manager.init("src/AddressBook.txt");
+		addressBook.init("src/AddressBook.txt");
 		
-		User user = manager.getUserByName("Bill McKnight");
+		User user = addressBook.getUserByName("Bill McKnight");
 		
 		assertEquals("User [name=Bill McKnight, gender=Male, birthDate=1977-03-16]", user.toString());
 		
-		assertNull(manager.getUserByName("TEST"));
+		assertNull(addressBook.getUserByName("TEST"));
 		
-		List<User> users = manager.getUsers();
+		List<User> users = addressBook.getUsers();
 		
 		assertEquals(5, users.size());
 		assertEquals("User [name=Bill McKnight, gender=Male, birthDate=1977-03-16]", users.get(0).toString());
 		
-		manager.setUsers(null);
+		addressBook.setUsers(null);
 		
-		assertNull(manager.getUsers());
-		assertNull(manager.getUserByName("TEST"));
+		assertNull(addressBook.getUsers());
+		assertNull(addressBook.getUserByName("TEST"));
 		
 	}
 

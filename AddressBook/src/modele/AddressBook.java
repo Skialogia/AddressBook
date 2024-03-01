@@ -8,7 +8,7 @@ import utils.CustomFileReader;
 /**
  * Manage a list of users
  */
-public class UserManager
+public class AddressBook
 {
 	private List<User> _users;
 
@@ -17,7 +17,7 @@ public class UserManager
 	 *
 	 * Note: This constructor initializes the list of users as empty.
 	 */
-	public UserManager()
+	public AddressBook()
 	{
 		_users = new ArrayList<>();
 	}

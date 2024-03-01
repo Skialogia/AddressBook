@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modele.User;
-import modele.UserManager;
+import modele.AddressBook;
 import utils.Constants;
 import utils.Gender;
 
@@ -95,15 +95,15 @@ public class Question
 	/**
 	 * Calculates the number of days between the birth dates of two peoples
 	 *
-	 * @param userManager User manager
+	 * @param addressBook Address Book
 	 * @param name1 Name of the first person
 	 * @param name2 Name of the second person
 	 */
-	public static void getNumberofDaysBetweenTwoPeoples(UserManager userManager, String name1, String name2)
+	public static void getNumberofDaysBetweenTwoPeoples(AddressBook addressBook, String name1, String name2)
 	{
 
-		User user1 = userManager.getUserByName(name1);
-		User user2 = userManager.getUserByName(name2);
+		User user1 = addressBook.getUserByName(name1);
+		User user2 = addressBook.getUserByName(name2);
 
 		if (user1 == null || user2 == null)
 		{
