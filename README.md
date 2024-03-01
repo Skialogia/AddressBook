@@ -28,6 +28,18 @@ OpenJDK 64-Bit Server VM Microsoft-8902769 (build 17.0.10+7-LTS, mixed mode, sha
 
 ## How to launch application
 
+### With Eclipse
+
+To launch the application using Eclipse, open Eclipse in previously cloned folder.  
+In the File tab, select 'Open project from File System'.  
+Next to 'import source' field, select 'Directory' and choose 'AddressBook' folder at root of git folder.  
+Select Finish.  
+For running the projet, press CTRL + F11.  
+Select 'Java Application'.  
+Choose 'Main - application'.  
+
+### Without Eclipse
+
 To launch the application without using Eclipse, a JAR file is provided. The jar is located in the "AddressBook" folder.  
 
 To launch the jar, use this command in command line:  
@@ -36,38 +48,38 @@ To launch the jar, use this command in command line:
 
 ## Overview
 
-The program is segmented into several parts.
+The program is segmented into several parts.  
 
 ### User
 
-Represents an entry in the address book  
-Defined by a name, a gender and a birth date  
-The attributes were determined based on the provided data file, using the following schema : NAME, GENDER, BIRTHDATE  
+Represents an entry in the address book.  
+Defined by a name, a gender and a birth date.  
+The attributes were determined based on the provided data file, using the following schema : NAME, GENDER, BIRTHDATE.  
 
 ### AddressBook
 
-Represents an address book  
-Used to manipulate Users  
-Require the use of init() method to function  
-Allows to retrieve an User based on their name  
+Represents an address book.  
+Used to manipulate Users.  
+Require the use of init() method to function.  
+Allows to retrieve an User based on their name.  
 
 ### Gender
 
-Enumeration used to define the gender of an User  
+Enumeration used to define the gender of an User.  
 --> MALE, FEMALE, OTHER  
-Allows to retrieve the enum constant according to a string  
+Allows to retrieve the enum constant according to a string.  
 
 ### CustomFileReader
 
-Used to read the data file and create a list of Users based on it  
+Used to read the data file and create a list of Users based on it.  
 
 ### Constants
 
-Static class storing constants used during the application, such as error messages and messages related to questions  
+Static class storing constants used during the application, such as error messages and messages related to questions.  
 
 ### Question
 
-Static class used to resolve questions asked  
+Static class used to resolve questions asked.  
 
 Questions asked :
 
